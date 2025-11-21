@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int r, c, a[10][10];
+    scanf("%d %d", &r, &c);
+
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+            scanf("%d", &a[i][j]);
+
+    for (int i = 0; i < r; i++) {
+        for (int x = 0; x < c - 1; x++) {
+            for (int y = x + 1; y < c; y++) {
+                if (a[i][x] > a[i][y]) {
+                    int temp = a[i][x];
+                    a[i][x] = a[i][y];
+                    a[i][y] = temp;
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+/*
+Input:
+2 3
+3 1 2
+9 7 8
+
+Output:
+1 2 3
+7 8 9
+*/

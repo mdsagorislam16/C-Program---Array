@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main() {
+    int r, c, a[10][10];
+    scanf("%d %d", &r, &c);
+
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+            scanf("%d", &a[i][j]);
+
+    int top = 0, bottom = r - 1, left = 0, right = c - 1;
+    int prev = a[top + 1][left], curr;
+
+    while (left <= right && top <= bottom) {
+        for (int i = left; i <= right; i++) {
+            curr = a[top][i];
+            a[top][i] = prev;
+            prev = curr;
+        }
+        top++;
+
+        for (int i = top; i <= bottom; i++) {
+            curr = a[i][right];
+            a[i][right] = prev;
+            prev = curr;
+        }
+        right--;
+
+        if (top <= bottom) {
+            for (int i = right; i >= left; i--) {
+                curr = a[bottom][i];
+                a[bottom][i] = prev;
+                prev = curr;
+            }
+        }
+        bottom--;
+
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--) {
+                curr = a[i][left];
+                a[i][left] = prev;
+                prev = curr;
+            }
+        }
+        left++;
+    }
+
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++)
+            printf("%d ", a[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}

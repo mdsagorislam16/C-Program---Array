@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    int n, a[10][10];
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%d", &a[i][j]);
+
+    int mainSum = 0, secSum = 0;
+
+    for (int i = 0; i < n; i++) {
+        mainSum += a[i][i];
+        secSum += a[i][n - i - 1];
+    }
+
+    printf("Main diagonal sum = %d\n", mainSum);
+    printf("Secondary diagonal sum = %d\n", secSum);
+
+    return 0;
+}
+
+/*
+Input:
+3
+1 2 3
+4 5 6
+7 8 9
+
+Output:
+Main diagonal sum = 15
+Secondary diagonal sum = 15
+*/
